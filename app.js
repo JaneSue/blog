@@ -12,9 +12,19 @@ var users = require('./routes/users');
 
 var app = express();
 
+
+//set swig no cached
+swig.setDefaults({
+  cache: false
+});
+
 // view engine setup
+app.engine('swig', swig.renderFile);
+
+app.set('view cache', false);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'swig');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
