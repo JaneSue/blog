@@ -1,4 +1,4 @@
-{% extends './layout.swig' %}
+{% extends '../layouts/main.swig' %}
 
 {% block content %}
 	<div>{{title}}</div>

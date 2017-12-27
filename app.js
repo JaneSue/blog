@@ -7,11 +7,7 @@ var bodyParser = require('body-parser');
 var util = require('util');
 var swig = require('swig');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-
 var app = express();
-
 
 //set swig no cached
 swig.setDefaults({
@@ -42,8 +38,14 @@ app.use(function(req, res, next){
   next();
 });
 
-app.use('/', index);
-app.use('/users', users);
+// 控制器
+['site', 'users'].forEach(function(controllerName, i){
+  var controller = require( './controllers/' + controllerName + 'Controller');
+  if(controllerName == 'site'){
+    controllerName = '';
+  }
+  app.use('/' + controllerName, controller)
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -60,7 +62,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error/error');
 });
 
 app.listen(3000, function(){
