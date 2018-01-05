@@ -6,4 +6,12 @@ router.get('/register', function(req, res, next) {
   res.render('auth/register');
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('auth/login');
+});
+
+router.post('/login-ajax', function(req, res, next) {
+  res.json({body: req.body.url})
+});
+
 module.exports = router;

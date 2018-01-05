@@ -10,6 +10,8 @@
     "cookie-parser": "1.4.x",
     "debug": "2.6.x",
     "express": "4.15.x",
+    "connect-mongo": "1.x.x",
+    "express-session": "1.x.x",
     "jade": "1.11.x",
     "mongoose": "4.x.x",
     "morgan": "1.9.x",

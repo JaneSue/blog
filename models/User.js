@@ -3,10 +3,7 @@ exports = module.exports = function(app, mongoose){
 		phone: { type: String, unique: true, max: 20 },
     username: { type: String, unique: true },
     password: String,
-    roles: {
-      admin: { type: mongoose.Schema.Types.ObjectId },
-      server: { type: mongoose.Schema.Types.ObjectId }
-    },
+    roles: { type: String, required: true },
     created: { type: Date, default: Date.now },
     updated: { type: Date, default: Date.now }
   });

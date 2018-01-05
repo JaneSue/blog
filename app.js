@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var util = require('util');
 var swig = require('swig');
 var mongoose = require('mongoose');
+var session = require('express-session');
+var mongoStore = require('connect-mongo')(session);
 var config =  require("./configs/main");
 var fs = require('fs');
 
@@ -53,14 +55,34 @@ app.engine('swig', swig.renderFile);
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser(config.cryptoKey));
+app.use(session({
+  // 覆盖保存
+  resave: true,
+  // 初始化存储
+  saveUninitialized: true,
+  // 与cookie对应的key
+  secret: config.cryptoKey,
+  // 数据库
+  store: new mongoStore({ url: config.mongodb.uri }),
+  // 设置过期时间30分钟
+  cookie: {
+    maxAge: 10*1000
+  },
+  // 页面刷新，过期时间重置
+  rolling: true
+}));
 app.use(express.static(path.join(__dirname, 'web')));
 
 // 视图助手
 app.use(function(req, res, next){
-  res.locals.print = function(obj, config) {
-    return util.inspect(obj, config || true);
+  global.print = res.locals.print = function(obj, config) {
+    var msg = util.inspect(obj, config || true);
+    if(config && config.pre){
+      return res.send('<pre>' + msg + '</pre>');
+    }
+    return res.send(msg);
   }
   next();
 });
