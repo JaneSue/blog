@@ -6,15 +6,18 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcryptjs": "2.4.x",
     "body-parser": "1.18.x",
+    "connect-mongo": "1.x.x",
     "cookie-parser": "1.4.x",
     "debug": "2.6.x",
     "express": "4.15.x",
-    "connect-mongo": "1.x.x",
     "express-session": "1.x.x",
     "jade": "1.11.x",
     "mongoose": "4.x.x",
     "morgan": "1.9.x",
+    "passport": "0.4.x",
+    "passport-local": "1.x.x",
     "serve-favicon": "2.4.x",
     "swig": "1.4.x"
   }
