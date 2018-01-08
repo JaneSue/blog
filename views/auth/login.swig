@@ -79,7 +79,7 @@
 						password: passwordEl.val()
 					},
 					"success": function(data){
-						if(data.status === 0){
+						if(data.success){
 							window.location.href = data.url;
 						}else{
 							alert(data.error)

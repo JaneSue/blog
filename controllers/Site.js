@@ -1,24 +1,50 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+// 首页
 router.get('/', function(req, res, next) {
-	// var user = {
-	// 	username: 'jane',
-	// 	phone: '15521196787'
-	// }
-	// req.session.user = user;
-	
-	print(req.session, { pre: true });
-	//req.session.destroy();
-	return;
+	var data = {};
+	var user = data.user = null;
+	if(req.isAuthenticated() && (user = req.session.passport.user)){
+		data.user = {
+			username: user.username,         
+			role: user.roles
+		};
+	}
+
+	data.category = [{
+		catename: 'javascript',
+		cover: '/',                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+		items: [
+			{
+				content: '1'
+			},
+			{
+				content: '2'
+			}
+		],
+		count: 2,
+		create_at: '2017-05-29 12:29:59',
+		update_at: '2017-05-29 18:29:59'
+	},{
+		catename: '网络日记',
+		cover: '/',                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+		items: [
+			{
+				content: '1'
+			},
+			{
+				content: '2'
+			}
+		],
+		count: 2,
+		create_at: '2017-05-29 12:29:59',
+		update_at: '2017-05-29 18:29:59'
+	}];
+
   res.render('site/index', { 
-  	title: 'Express', 
-  	data: {
-  		'name': 'jane',
-  		'age': 22,
-  		'sex': 'boy'
-  	}
+  	title: 'Express',
+  	data: data
   }); 
 });
 

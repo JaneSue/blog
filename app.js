@@ -71,7 +71,7 @@ app.use(session({
   store: new mongoStore({ url: config.mongodb.uri }),
   // 设置过期时间30分钟
   cookie: {
-    maxAge: 10*1000
+    maxAge: 1800*1000
   },
   // 页面刷新，过期时间重置
   rolling: true

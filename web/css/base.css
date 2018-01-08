@@ -22,6 +22,5 @@ body {
 .clearfix{
     *zoom:1;/*IE/7/6*/
 }
-a {color:#666; text-decoration:none; }
-a:hover{color:#C81623;}
+a {color: inherit; text-decoration:none; }
 h1,h2,h3,h4,h5,h6 {text-decoration:none;font-weight:normal;font-size:100%;}  /*设置h标签的大小，设置跟父亲一样大的字体font-size:100%;*/
