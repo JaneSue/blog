@@ -5,23 +5,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var db = app.db;
 
-var article = {
-	title: String,
-	cover: String,
-	created: Date,
-	updated: Date,
-	content: String,
-	_id: Object,
-	status:  Number,
-	sort_by: Number,
-	create_by: Object,
-	category: [{
-		type: String,
-		default: '默认',
-		max: 99
-	}]
-};
-
 // 登录策略函数
 passport.use(new LocalStrategy(function(username, password, done) {
   app.db.models.User.findOne({ username: username }, function(err, user) {
